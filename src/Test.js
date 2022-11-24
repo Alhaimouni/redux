@@ -4,23 +4,23 @@ import { connect } from 'react-redux';
 function Test(props) {
   return (
     <div>
-      <h2>Test Component</h2>
-      <p> test counter : {props.x}</p>
-      <p onClick={() => { props.setUser() }}> set Data </p>
+      <p>Test Component</p>
+      <p>{props.counter}</p>
+      <p>{props.name}</p>
+      <p></p>
     </div >
   )
 };
 
+
 function mapStateToProps(state) {
   return {
-    x: state.counterReducer.counter,
+    counter: state.counterReducer.counter,
+    name: state.textReducer
   }
-}
+};
 
-function mapDispatchToProps(dispatch) {
-  return {
-    setUser: () => { dispatch({ type: 'login' }) }
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Test);
+
+
+export default connect(mapStateToProps)(Test);
