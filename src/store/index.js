@@ -1,14 +1,20 @@
 import { createStore, combineReducers } from 'redux';
-import counterReducer from './reducers/counterReducer';
+import { addListener, configureStore } from '@reduxjs/toolkit';
+// import counterReducer from './reducers/counterReducer';
 import textReducer from './reducers/textReducer';
+import counterSlice from '../store/sliceReducers/counterSlice';
 
 
+// const allReducers = combineReducers({ counterSlice });
 
-const allReducers = combineReducers({ counterReducer, textReducer });
+// const store = createStore(allReducers,reduxDevTool(thunk));
 
-function store() {
-  return createStore(allReducers);
-}
+const store = configureStore({
+  reducer: {
+    counterSlice,
+
+  }
+})
 
 
 
