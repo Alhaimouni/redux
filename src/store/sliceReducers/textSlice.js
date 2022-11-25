@@ -1,17 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const textSlice = createSlice({
-  name: 'textSlice',
+  name: 'ts',
   initialState: { name: 'ali', text: 'no text' },
   reducers: {
     hello: (state, action) => {
       state.text = 'hello'
-      console.log({ ...state });
       return state;
     },
     meow: (state, action) => {
       state.text = 'meow';
-      console.log({ ...state });
       return state;
     }
   }

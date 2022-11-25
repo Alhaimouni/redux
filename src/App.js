@@ -1,42 +1,30 @@
-import { connect } from 'react-redux';
 import { inc, dec } from './store/sliceReducers/counterSlice';
 import { hello, meow } from './store/sliceReducers/textSlice';
+import { useSelector, useDispatch } from 'react-redux';
 
 function App(props) {
+
+
+  const counter = useSelector(state => state.counterSlice.counter);
+  const text = useSelector(state => state.textSlice);
+  const dispatch = useDispatch();
 
   return (
     <div className="App">
       <h2>App Component</h2>
       <button onClick={() => {
-        props.inc();
-        props.meow();
+        dispatch(inc());
+        dispatch(hello());
       }}>+</button>
-      <p>{props.counter}</p>
-      <p>{props.text}</p>
+      <p>{counter}</p>
+      <p>{text.text}</p>
       <button onClick={() => {
-        props.dec();
-        props.hello();
+        dispatch(dec());
+        dispatch(meow());
       }}>-</button>
       <hr />
     </div>
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    counter: state.counterSlice.counter,
-    text: state.textSlice.text
-  }
-};
-
-const mapDispatchToProps = { inc, dec, hello, meow };
-
-
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     inc: (payload) => { dispatch(inc(payload)) }
-//   }
-// }
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
